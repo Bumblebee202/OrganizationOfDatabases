@@ -1,3 +1,4 @@
+using SalesApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,11 +28,8 @@ namespace SalesApplication
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SetTargetForm_Load(object sender, EventArgs e)
-        {
-            // TODO: Display the SalesPerson target sales value.
-            targetSalesTextBox.Text = "0.0";
-        }
+        private void SetTargetForm_Load(object sender, EventArgs e) 
+            => targetSalesTextBox.Text = SalesPerson.TargetSales.ToString();
 
         /// <summary>
         /// Sets the target sales on the SalesPerson class,
