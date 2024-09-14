@@ -83,10 +83,6 @@ namespace SalesApplication
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SalesForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // TODO: Discard the SalesPerson instance.
-
-        }
+        private void SalesForm_FormClosing(object sender, FormClosingEventArgs e) => _salesPerson = null;
     }
 }
