@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\SalesPerson.cs" />
     <Compile Include="SetTargetForm.cs">
       <SubType>Form</SubType>
     </Compile>
