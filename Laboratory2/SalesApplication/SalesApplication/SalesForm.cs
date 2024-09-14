@@ -35,8 +35,7 @@ namespace SalesApplication
         /// <param name="e"></param>
         private void SalesForm_Load(object sender, EventArgs e)
         {
-            // TODO: Display the name of the sales person.
-            Text = string.Format("Sales Details for {0}", "[name]");
+            Text = $"Sales Details for {_salesPerson.Name}";
 
             DisplaySalesDetails();
         }
