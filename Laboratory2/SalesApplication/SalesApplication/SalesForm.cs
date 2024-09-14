@@ -45,10 +45,11 @@ namespace SalesApplication
         /// </summary>
         private void DisplaySalesDetails()
         {
-            // TODO: Display the sales details for the sales person.
-            totalSalesLabel.Text = string.Format("Total sales: {0:c2}", 0.0);
-            averageSaleLabel.Text = string.Format("Average sale: {0:c2}", 0.0);
-            statusLabel.Text = "[Status]";
+            totalSalesLabel.Text = $"Total sales: {_salesPerson.TotalSales:c2}";
+            averageSaleLabel.Text = $"Average sales: {_salesPerson.AvgSale:c2}";
+            statusLabel.Text = _salesPerson.TotalSales >= SalesPerson.TargetSales
+                ? "Target sales achieved."
+                : "Target sales not achieved.";
         }
 
         /// <summary>
