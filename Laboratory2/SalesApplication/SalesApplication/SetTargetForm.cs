@@ -41,11 +41,7 @@ namespace SalesApplication
         {
             try
             {
-                decimal target = decimal.Parse(targetSalesTextBox.Text);
-
-                // TODO: Set the SalesPerson target sales value.
-
-
+                SalesPerson.TargetSales = decimal.Parse(targetSalesTextBox.Text);
                 Close();
             }
             catch (FormatException)
