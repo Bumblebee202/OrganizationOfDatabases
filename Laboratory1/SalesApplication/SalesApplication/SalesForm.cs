@@ -91,19 +91,21 @@ namespace SalesApplication
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            StreamWriter sw = null;
-            sw = CreateFile();
+            var sw = CreateFile();
             foreach (string name in salesListBox.Items)
             {
                 WriteSalesPerson(sw, name);
             }
             MessageBox.Show("Save Successful", "Save");
+            CloseFile(sw);
         }
 
         private void CloseFile(StreamWriter sw)
         {
             if (sw != null)
+            {
                 sw.Close();
+            }
         }
 
         private void WriteSalesPerson(StreamWriter sw, string name)
@@ -113,9 +115,15 @@ namespace SalesApplication
 
         private StreamWriter CreateFile()
         {
-            // TODO [Ex 2]: Add a catch handler to open the file rather than creating it.
             FileStream fs;
-            fs = File.Open(@"sales.txt", FileMode.CreateNew);
+            try
+            {
+                fs = File.Open(@"sales.txt", FileMode.CreateNew);
+            }
+            catch (Exception)
+            {
+                fs = File.Open(@"sales.txt", FileMode.Open);
+            }
             return new StreamWriter(fs);
         }
 
