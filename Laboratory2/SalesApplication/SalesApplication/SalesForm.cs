@@ -1,3 +1,4 @@
+using SalesApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,7 @@ namespace SalesApplication
     /// </summary>
     public partial class SalesForm : Form
     {
-        // TODO: Declare a SalesPerson variable named _salesPerson.
-
+        SalesPerson _salesPerson;
 
         /// <summary>
         /// Initializes the form object.
@@ -25,9 +25,7 @@ namespace SalesApplication
         {
             InitializeComponent();
 
-            // TODO: Create a SalesPerson instance, and assign it to _salesPerson. 
-
-
+            _salesPerson = new SalesPerson(name);
         }
 
         /// <summary>
