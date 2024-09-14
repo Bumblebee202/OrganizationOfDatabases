@@ -62,9 +62,7 @@ namespace SalesApplication
             try
             {
                 decimal sale = decimal.Parse(saleTextBox.Text);
-
-                // TODO: Add the sale to the sales person.
-                
+                _salesPerson.AddSale(sale);
 
                 DisplaySalesDetails();
             }
