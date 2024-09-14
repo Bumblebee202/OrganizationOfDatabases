@@ -1,12 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SalesApplication
 {
@@ -20,9 +15,16 @@ namespace SalesApplication
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            string name = nameTextBox.Text;
-            // TODO [Ex 1]: Add the name to the list box here.
-            
+            var name = nameTextBox.Text;
+
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("Name must be provided.", "Error");
+            }
+            else
+            {
+                AddToList(name);
+            }
         }
 
         private void AddToList(string name)
@@ -32,29 +34,61 @@ namespace SalesApplication
 
         private void targetButton_Click(object sender, EventArgs e)
         {
-            string target = "";
+            var target = string.Empty;
             if (targetComboBox.SelectedItem != null)
+            {
                 target = targetComboBox.SelectedItem.ToString();
-            
-            // TODO [Ex 1]: Let the user know if the value of target is acceptable.
+            }
+
+            var message = string.Empty;
+            switch (target)
+            {
+                case "100000":
+                case "300000":
+                    message = "This seems a little low.";
+                    break;
+                case "500000":
+                    message = "This seems about right.";
+                    break;
+                case "1000000":
+                    message = "This seems a little high.";
+                    break;
+                case "10000000":
+                    message = "Go for it!";
+                    break;
+                default:
+                    message = "No target set";
+                    break;
+            }
+
+            MessageBox.Show(message, " Target", MessageBoxButtons.OK);
         }
 
         private void DeleteSalesPeople()
         {
-            // TODO [Ex 1]: Delete items from the listbox if the user agrees.
+            foreach (var item in salesListBox.Items)
+            {
+                var name = item is string
+                    ? item as string
+                    : item.ToString();
+
+                AskUserToRemoveName(name);
+            }
         }
 
         private void AskUserToRemoveName(string name)
         {
             if (MessageBox.Show(name, "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
                 RemoveNameFromList(name);
+            }
         }
 
         private void RemoveNameFromList(string name)
         {
             names.Add(name);
         }
-        
+
         private void saveButton_Click(object sender, EventArgs e)
         {
             StreamWriter sw = null;
@@ -68,7 +102,7 @@ namespace SalesApplication
 
         private void CloseFile(StreamWriter sw)
         {
-            if(sw != null)
+            if (sw != null)
                 sw.Close();
         }
 
@@ -84,7 +118,7 @@ namespace SalesApplication
             fs = File.Open(@"sales.txt", FileMode.CreateNew);
             return new StreamWriter(fs);
         }
-        
+
         private void deleteButton_Click(object sender, EventArgs e)
         {
             DeleteSalesPeople();
