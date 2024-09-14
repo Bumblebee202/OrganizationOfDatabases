@@ -1,3 +1,4 @@
+using SalesApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,11 +73,7 @@ namespace SalesApplication
         /// <summary>
         /// Displays the target sales, which applies to all sales people.
         /// </summary>
-        private void DisplayTargetSales()
-        {
-            // TODO: Display the target sales value for all sales people.
-            targetSalesLabel.Text = 
-                string.Format("Target sales for all sales people: {0:c2}", 0.0);
-        }
+        private void DisplayTargetSales() 
+            => targetSalesLabel.Text = $"Target sales for all sales people: {SalesPerson.TargetSales:c2}";
     }
 }
