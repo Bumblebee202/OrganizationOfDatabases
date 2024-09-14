@@ -1,34 +1,30 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SalesApplication
 {
     public partial class SetIndividualTargets : Form
     {
-        // TODO [Ex 3]: Add a generic collection to hold the sales targets.
+        readonly List<string> _salesTargets;
 
         public SetIndividualTargets()
         {
             InitializeComponent();
+
+            _salesTargets = new List<string>();
         }
 
         private void addTargetButton_Click(object sender, EventArgs e)
         {
-            int target;
-            Int32.TryParse(targetTextBox.Text, out target);
+            int.TryParse(targetTextBox.Text, out int target);
             string name = nameTextBox.Text;
-            string entry = "";
+            string entry = string.Empty;
             if (!string.IsNullOrEmpty(name))
             {
-                entry = string.Format("{0} target is {1}", name, target);
+                entry = $"{name} target is {target}";
+                _salesTargets.Add(entry);
             }
-            // TODO [Ex 3]: Add the sales targets to the collection.
-
         }
 
         private void listButton_Click(object sender, EventArgs e)
@@ -40,8 +36,10 @@ namespace SalesApplication
         {
             targetsListBox.Items.Clear();
 
-            // TODO [Ex 3]: Loop over the collection and add each entry to the listbox.
-            
+            foreach (string salesTarget in _salesTargets)
+            {
+                targetsListBox.Items.Add(salesTarget);
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -49,9 +47,11 @@ namespace SalesApplication
             object item = targetsListBox.SelectedItem;
             if (item != null)
             {
-                string target = item.ToString();
+                var target = item is string str 
+                    ? str
+                    : item.ToString();
 
-                // TODO [Ex 3]: Remove the targets from the collection.
+                _salesTargets.Remove(target);
 
                 AddTargetsToList();
             }
