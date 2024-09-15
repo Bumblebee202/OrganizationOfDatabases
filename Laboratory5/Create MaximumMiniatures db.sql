@@ -5,7 +5,7 @@ use MaximumMiniatures
 create table DimBatch
 (
 	BatchNumber int not null primary key identity(1, 1),
-	NatchName varchar(50) not null
+	BatchName varchar(50) not null
 );
 
 create table DimCountry
